@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Samaycricket</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="//content.jwplatform.com/libraries/SAHhwvZq.js"></script>
+  <style>
+    body {
+      margin: 0;
+    }
+    .jwplayer {
+      position: absolute !important;
+    }
+    .jwplayer.jw-flag-aspect-mode {
+      min-height: 100%;
+      max-height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="jwplayerDiv"></div>
+  <script src="channelData.js"></script> <!-- Reference to your channelData.js file -->
+  <script>
+    // Function to get query parameter by name
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Get the channel ID from the URL
+    const channelId = getQueryParam('id');
+
+    // Check if the channel ID exists in the channel data
+    if (channelData[channelId]) {
+      const channel = channelData[channelId];
+
+      // Setup JW Player with the selected channel data
+      jwplayer("jwplayerDiv").setup({
+        file: channel.file,
+        autostart: true,
+        stretching: "uniform",
+        width: "100%",
+        type: "dash",
+        drm: {
+          clearkey: {
+            keyId: channel.drm.clearkey.keyId,
+            key: channel.drm.clearkey.key
+          }
+        }
+      });
+    } else {
+      alert('Channel not found. Please check the URL.');
+    }
+  </script>
+</body>
+</html>
