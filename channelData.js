@@ -34,5 +34,14 @@ const channelData = {
         "key": "63ac662dde310cfb4cc6f9b43b34196d"
       }
     }
+  },
+  "Kabbadi": {
+    "file": "https://bpcdncs3.dialog.lk/bpk-token/2ab@ilqaatufbcamc5yskyewpabagb0cenf35a2kj3ca/GlobalManifest.mpd",
+    "drm": {
+      "clearkey": {
+        "keyId": "fae2bdb57c6a5ed6802f91a021505dc1",
+        "key": "4d5d55f218c3671e16f89542c9a80b77"
+      }
+    }
   }
 };
