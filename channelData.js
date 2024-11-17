@@ -35,12 +35,12 @@ const channelData = {
       }
     }
   },
-  "Kabbadi": {
-    "file": "https://bpcdncs3.dialog.lk/bpk-token/2ab@ilqaatufbcamc5yskyewpabagb0cenf35a2kj3ca/GlobalManifest.mpd",
+  "test": {
+    "file": "https://bpcdncs1.dialog.lk/bpk-token/2aa@5lbueqpkfqsa4ginyiwzocija55kai2fi4xsedca/dash/Ch124/GlobalManifest.mpd",
     "drm": {
       "clearkey": {
-        "keyId": "fae2bdb57c6a5ed6802f91a021505dc1",
-        "key": "4d5d55f218c3671e16f89542c9a80b77"
+        "keyId": "75e37366d456579099a11a087de9e80a",
+        "key": "84bae90b54343865518f96c5db1bba8d"
       }
     }
   },
