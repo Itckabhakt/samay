@@ -43,5 +43,23 @@ const channelData = {
         "key": "4d5d55f218c3671e16f89542c9a80b77"
       }
     }
+  },
+  "Tencricket": {
+    "file": "https://edge3-moblive.yuppcdn.net/drm/smil:tencricketdrm.smil/manifest.mpd",
+    "drm": {
+      "clearkey": {
+        "keyId": "9872e439f21f4a299cab249c6554daa3",
+        "key": "0cdfcfe0d0f1fbe100554ce3ef4c4665"
+      }
+    }
+  },
+  "Tntsport3": {
+    "file": "https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/lsdasbvglv/out/v1/bb548a3626cd4708afbb94a58d71dce9/cenc.mpd",
+    "drm": {
+      "clearkey": {
+        "keyId": "4e993aa8c1f295f8b94e8e9e6f6d0bfe",
+        "key": "86a1ed6e96caab8eb1009fe530d2cf4f"
+      }
+    }
   }
 };
