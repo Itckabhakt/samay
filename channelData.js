@@ -35,12 +35,12 @@ const channelData = {
       }
     }
   },
-  "test": {
-    "file": "https://bpcdncs1.dialog.lk/bpk-token/2aa@5lbueqpkfqsa4ginyiwzocija55kai2fi4xsedca/dash/Ch124/GlobalManifest.mpd",
+  "s1hd": {
+    "file": "https://bpcdncs3.dialog.lk/bpk-token/2ab@ukjdzzlcfneh5mukcptpmsgsthvk0fthdbfjqxba/GlobalManifest.mpd",
     "drm": {
       "clearkey": {
-        "keyId": "75e37366d456579099a11a087de9e80a",
-        "key": "84bae90b54343865518f96c5db1bba8d"
+        "keyId": "506e9d88fcfc59cea6be2100b69da117",
+        "key": "11ed35df34df98373fbf8a45fb02cd44"
       }
     }
   },
