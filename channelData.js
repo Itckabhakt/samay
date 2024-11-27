@@ -36,7 +36,7 @@ const channelData = {
     }
   },
   "trhd": {
-    "file": "https://dfwlive-v1-c1p3-sponsored.cf.dtvcdn.com/Content/HLS.cps/Live/channel(WILLXT-3292.dfw.1080)/index.m3u8",
+    "file": "https://cors-proxy.cooks.fyi/https://dfwlive-v1-c1p3-sponsored.cf.dtvcdn.com/Content/HLS.cps/Live/channel(WILLXT-3292.dfw.1080)/index.m3u8",
     "drm": {
       "clearkey": {
         "keyId": "1f52934d28a25c51a5dd577a650dcece",
