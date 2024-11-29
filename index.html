@@ -1,93 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Shaka Player</title>
+    <title>MY</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.9.3/controls.min.css" rel="stylesheet">
+    <meta name="referrer" content="no-referrer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.8/shaka-player.ui.min.js"></script>
-    <script src="channelData.js"></script> <!-- Adjust the path to your channelData.js -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.9.3/controls.min.css" rel="stylesheet">
+    <script src="channelData.js"></script> <!-- Loading the channel data -->
     <style>
+        * {
+            user-select: auto !important;
+            -webkit-user-select: auto !important;
+        }
         body {
             margin: 0;
             background-color: black;
-            color: white;
         }
         video {
             width: 100%;
             height: 100%;
-            max-height: 100vh; /* For responsive height on mobile devices */
-            background: black;
+            max-height: 100vh;
         }
         .shaka-video-container {
             width: 100%;
             height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            cursor: none;
         }
     </style>
 </head>
 <body>
-    <div class="shaka-video-container" data-shaka-player-container>
-        <video id="video" class="shaka-video" autoplay muted></video>
-    </div>
+    <center>
+        <div data-shaka-player-container="" class="shaka-video-container shaka-mobile" shaka-controls="true">
+            <video poster="#" autoplay muted data-shaka-player="" id="video" class="shaka-video"></video>
+        </div>
+    </center>
 
     <script>
-        // Function to fetch query parameters from the URL
-        function getQueryParameter(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
+        // Prompt for Telegram Channel
+        if (confirm("Join Our Telegram Channel @cricketsamay365")) {
+            window.location.href = "https://telegram.me/cricketsamay365";
         }
 
-        // Initialize Shaka Player with the selected channel
-        async function initPlayer() {
-            const channelId = getQueryParameter('id'); // Fetch channel name from URL parameter
-            const selectedChannel = channelData[channelId]; // Match channel data from channelData.js
+        // Fetching channel ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const channelId = urlParams.get('id');
 
-            if (!selectedChannel) {
-                console.error('Channel not found in channelData');
-                alert('Invalid channel ID!');
+        async function init() {
+            // Validate channel data
+            if (!channelData || !channelData[channelId]) {
+                alert("Channel not found or invalid!");
                 return;
             }
+
+            const channel = channelData[channelId];
+            const manifestUri = channel.file;
+            const drmKeys = channel.drm.clearkey;
 
             const video = document.getElementById('video');
             const ui = video['ui'];
             const controls = ui.getControls();
             const player = controls.getPlayer();
 
-            // Configure UI and playback options
+            // Configure Shaka Player UI
             const config = {
-                controlPanelElements: ['play_pause', 'time_and_duration', 'spacer', 'mute', 'fullscreen'],
-                playbackRates: [0.5, 1, 1.5, 2],
+                controlPanelElements: ['play_pause', 'time_and_duration', 'spacer', 'mute', 'picture_in_picture', 'playback_rate', 'quality', 'fullscreen'],
+                playbackRates: [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2],
             };
             ui.configure(config);
 
-            // Configure DRM for the selected channel
+            // Configure DRM
             player.configure({
                 drm: {
-                    clearKeys: {
-                        [selectedChannel.drm.clearkey.keyId]: selectedChannel.drm.clearkey.key
-                    }
+                    clearKeys: drmKeys
                 }
             });
 
+            // Attach player and UI to the window for debugging
+            window.player = player;
+            window.ui = ui;
+
+            // Listen for error events
+            player.addEventListener('error', onPlayerErrorEvent);
+            controls.addEventListener('error', onUIErrorEvent);
+
+            // Load the manifest
             try {
-                // Load the manifest file for the selected channel
-                await player.load(selectedChannel.file);
-                console.log('The video has been loaded successfully!');
+                await player.load(manifestUri);
+                console.log('The video has now been loaded!');
             } catch (error) {
-                console.error('Error loading video:', error);
-                alert('Failed to load the video. Please try again later.');
+                onPlayerError(error);
             }
         }
 
-        // Handle Shaka Player loading events
-        document.addEventListener('shaka-ui-loaded', initPlayer);
-        document.addEventListener('shaka-ui-load-failed', () => {
-            console.error('Shaka Player failed to load!');
-            alert('Shaka Player could not initialize.');
-        });
+        function onPlayerErrorEvent(errorEvent) {
+            onPlayerError(errorEvent.detail);
+        }
+
+        function onPlayerError(error) {
+            console.error('Error code', error.code, 'object', error);
+        }
+
+        function onUIErrorEvent(errorEvent) {
+            onPlayerError(errorEvent.detail);
+        }
+
+        function initFailed(errorEvent) {
+            console.error('Unable to load the UI library!');
+        }
+
+        // Listen for Shaka Player events
+        document.addEventListener('shaka-ui-loaded', init);
+        document.addEventListener('shaka-ui-load-failed', initFailed);
     </script>
 </body>
 </html>
