@@ -62,7 +62,7 @@ const channelData = {
       }
     }
   },
-  "Tntsport4": {
+  "Tntsport2": {
     "file": "https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/f0qvkrra8j/out/v1/f8fa17f087564f51aa4d5c700be43ec4/cenc.mpd",
     "drm": {
       "clearkey": {
