@@ -1,70 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Shaka Player</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.9.3/controls.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.8/shaka-player.ui.min.js"></script>
-    <script src="channelData.js"></script> <!-- Adjust the path to match your setup -->
+    <script src="channelData.js"></script> <!-- Adjust the path to your channelData.js -->
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+            color: white;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            max-height: 100vh; /* For responsive height on mobile devices */
+            background: black;
+        }
+        .shaka-video-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
 </head>
-<body style="margin:0; background:black;">
-
-<center>
-    <div data-shaka-player-container style="width: 100%; height: 100%;" class="shaka-video-container">
-        <video id="video" class="shaka-video" autoplay style="width: 100%; height: 100%;"></video>
+<body>
+    <div class="shaka-video-container" data-shaka-player-container>
+        <video id="video" class="shaka-video" autoplay muted></video>
     </div>
-</center>
 
-<script>
-    // Function to fetch query parameters from the URL
-    function getQueryParameter(param) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(param);
-    }
-
-    function initPlayer() {
-        const channelId = getQueryParameter('id'); // Fetch channel name from URL parameter
-        const selectedChannel = channelData[channelId]; // Match channel data from channelData.js
-
-        if (!selectedChannel) {
-            console.error('Channel not found in channelData');
-            alert('Invalid channel ID!');
-            return;
+    <script>
+        // Function to fetch query parameters from the URL
+        function getQueryParameter(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
         }
 
-        const video = document.getElementById('video');
-        const ui = video['ui'];
-        const controls = ui.getControls();
-        const player = controls.getPlayer();
+        // Initialize Shaka Player with the selected channel
+        async function initPlayer() {
+            const channelId = getQueryParameter('id'); // Fetch channel name from URL parameter
+            const selectedChannel = channelData[channelId]; // Match channel data from channelData.js
 
-        // Configure the player
-        const config = {
-            controlPanelElements: ['play_pause', 'time_and_duration', 'spacer', 'mute', 'fullscreen'],
-            playbackRates: [0.5, 1, 1.5, 2],
-        };
-        ui.configure(config);
-
-        // DRM and manifest file setup
-        player.configure({
-            drm: {
-                clearKeys: {
-                    [selectedChannel.drm.clearkey.keyId]: selectedChannel.drm.clearkey.key
-                }
+            if (!selectedChannel) {
+                console.error('Channel not found in channelData');
+                alert('Invalid channel ID!');
+                return;
             }
+
+            const video = document.getElementById('video');
+            const ui = video['ui'];
+            const controls = ui.getControls();
+            const player = controls.getPlayer();
+
+            // Configure UI and playback options
+            const config = {
+                controlPanelElements: ['play_pause', 'time_and_duration', 'spacer', 'mute', 'fullscreen'],
+                playbackRates: [0.5, 1, 1.5, 2],
+            };
+            ui.configure(config);
+
+            // Configure DRM for the selected channel
+            player.configure({
+                drm: {
+                    clearKeys: {
+                        [selectedChannel.drm.clearkey.keyId]: selectedChannel.drm.clearkey.key
+                    }
+                }
+            });
+
+            try {
+                // Load the manifest file for the selected channel
+                await player.load(selectedChannel.file);
+                console.log('The video has been loaded successfully!');
+            } catch (error) {
+                console.error('Error loading video:', error);
+                alert('Failed to load the video. Please try again later.');
+            }
+        }
+
+        // Handle Shaka Player loading events
+        document.addEventListener('shaka-ui-loaded', initPlayer);
+        document.addEventListener('shaka-ui-load-failed', () => {
+            console.error('Shaka Player failed to load!');
+            alert('Shaka Player could not initialize.');
         });
-
-        // Load the manifest file
-        player.load(selectedChannel.file).then(() => {
-            console.log('The video has been loaded successfully!');
-        }).catch((error) => {
-            console.error('Error loading video:', error);
-        });
-    }
-
-    // Initialize player after Shaka UI loads
-    document.addEventListener('shaka-ui-loaded', initPlayer);
-</script>
-
+    </script>
 </body>
 </html>
