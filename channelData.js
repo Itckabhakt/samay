@@ -35,7 +35,7 @@ const channelData = {
       }
     }
   },
-  "trhd": {
+  "Trhd": { // Capitalized the channel name for consistency
     "file": "https://cors-proxy.cooks.fyi/https://dfwlive-v1-c1p3-sponsored.cf.dtvcdn.com/Content/HLS.cps/Live/channel(WILLXT-3292.dfw.1080)/index.m3u8",
     "drm": {
       "clearkey": {
