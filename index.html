@@ -1,60 +1,70 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>@Cricket_Samay365</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="//content.jwplatform.com/libraries/SAHhwvZq.js"></script>
-  <style>
-    body {
-      margin: 0;
-    }
-    .jwplayer {
-      position: absolute !important;
-    }
-    .jwplayer.jw-flag-aspect-mode {
-      min-height: 100%;
-      max-height: 100%;
-    }
-  </style>
+    <title>Shaka Player</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.9.3/controls.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.8/shaka-player.ui.min.js"></script>
+    <script src="channelData.js"></script> <!-- Adjust the path to match your setup -->
 </head>
-<body>
-  <div id="jwplayerDiv"></div>
-  <script src="channelData.js"></script> <!-- Reference to your channelData.js file -->
-  <script>
-    if (confirm("Join Our Telegram Channel @Cricket_Samay365")) {
-        window.location.href = "https://telegram.me/https://t.me/Cricket_Samay365";
+<body style="margin:0; background:black;">
+
+<center>
+    <div data-shaka-player-container style="width: 100%; height: 100%;" class="shaka-video-container">
+        <video id="video" class="shaka-video" autoplay style="width: 100%; height: 100%;"></video>
+    </div>
+</center>
+
+<script>
+    // Function to fetch query parameters from the URL
+    function getQueryParameter(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
     }
-    // Function to get query parameter by name
-    function getQueryParam(param) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(param);
-    }
 
-    // Get the channel ID from the URL
-    const channelId = getQueryParam('id');
+    function initPlayer() {
+        const channelId = getQueryParameter('id'); // Fetch channel name from URL parameter
+        const selectedChannel = channelData[channelId]; // Match channel data from channelData.js
 
-    // Check if the channel ID exists in the channel data
-    if (channelData[channelId]) {
-      const channel = channelData[channelId];
-
-      // Setup JW Player with the selected channel data
-      jwplayer("jwplayerDiv").setup({
-        file: channel.file,
-        autostart: true,
-        stretching: "uniform",
-        width: "100%",
-        type: "dash",
-        drm: {
-          clearkey: {
-            keyId: channel.drm.clearkey.keyId,
-            key: channel.drm.clearkey.key
-          }
+        if (!selectedChannel) {
+            console.error('Channel not found in channelData');
+            alert('Invalid channel ID!');
+            return;
         }
-      });
-    } else {
-      alert('Channel not found. Please check the URL.');
+
+        const video = document.getElementById('video');
+        const ui = video['ui'];
+        const controls = ui.getControls();
+        const player = controls.getPlayer();
+
+        // Configure the player
+        const config = {
+            controlPanelElements: ['play_pause', 'time_and_duration', 'spacer', 'mute', 'fullscreen'],
+            playbackRates: [0.5, 1, 1.5, 2],
+        };
+        ui.configure(config);
+
+        // DRM and manifest file setup
+        player.configure({
+            drm: {
+                clearKeys: {
+                    [selectedChannel.drm.clearkey.keyId]: selectedChannel.drm.clearkey.key
+                }
+            }
+        });
+
+        // Load the manifest file
+        player.load(selectedChannel.file).then(() => {
+            console.log('The video has been loaded successfully!');
+        }).catch((error) => {
+            console.error('Error loading video:', error);
+        });
     }
-  </script>
+
+    // Initialize player after Shaka UI loads
+    document.addEventListener('shaka-ui-loaded', initPlayer);
+</script>
+
 </body>
 </html>
