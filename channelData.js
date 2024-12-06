@@ -1,6 +1,6 @@
 const channelData = {
   "Cricbuzz": {
-    "file": "https://live2.shoq.com.pk/live/eds/Criclife2/DASH/Criclife2.mpd",
+    "file": "https://live6.shoq.com.pk/live/eds/Criclife2/DASH/Criclife2.mpd",
     "drm": {
       "clearkey": {
         "keyId": "4301796d6d67374043c4a43c18dff7ea",
