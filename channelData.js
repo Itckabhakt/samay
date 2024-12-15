@@ -1,15 +1,15 @@
 const channelData = {
   "Cricbuzz": {
-    "file": "https://live6.shoq.com.pk/live/eds/Criclife2/DASH/Criclife2.mpd",
+    "file": "https://uselector.cdn.intigral-ott.net/CRL2/CRL2.isml/manifest.mpd",
     "drm": {
       "clearkey": {
-        "keyId": "4301796d6d67374043c4a43c18dff7ea",
-        "key": "96a3dc8766317aa169149a604928ebb6"
+        "keyId": "77889c7295e1f113852aa6030242b8e4",
+        "key": "ec8c522d46888a15ff6533aa28ccd7f5"
       }
     }
   },
   "Willow": {
-    "file": "https://zerotoone.com.br/wp-content/plugins/super-links/application/helpers/super-links-proxy.php/https://dfwlive-v1-c1p3-sponsored.s.llnwi.net/Content/HLS.cps/Live/channel(WILLHD-3291.dfw.1080)/index.m3u8",
+    "file": "https://cors-anywhere.ammoapps.com/https://dfwlive-v1-c1p3-sponsored.akamaized.net/Content/HLS.cps/Live/channel(WILLHD-3291.dfw.1080)/index.m3u8",
     "drm": {
       "clearkey": {
         "keyId": "59ed8dc9d4a48857ef8e5865919496cc",
